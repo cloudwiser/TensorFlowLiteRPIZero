@@ -32,7 +32,7 @@ An addendum to the native compile section of https://www.tensorflow.org/lite/gui
 (rpi) $ sudo /etc/init.d/dphys-swapfile stop
 (rpi) $ sudo /etc/init.d/dphys-swapfile start
 
-# Build...allow ~3 hours
+# Build...allow ~6 hours
 (rpi) $ cd /home/pi/tensorflow
 (rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_lib.sh
 
@@ -43,4 +43,12 @@ An addendum to the native compile section of https://www.tensorflow.org/lite/gui
 (rpi) $ sudo /etc/init.d/dphys-swapfile stop
 (rpi) $ sudo /etc/init.d/dphys-swapfile start
 ```
+
+The output from the above should be error-free and result in `minimal` and `benchmark` executables placed in  `../tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin` ...plus `libtensorflow-lite.a` and ` benchmark-lib.a` placed in `../lib`
+
+Test the build using a `.tflite` model (see https://www.tensorflow.org/lite/models/object_detection/overview) by running `./minimal detect.tflite`
+
+This should generate a summary of the model architecture on stdout 
+
+If this isn't the case, check the build output for errors
 

@@ -1,4 +1,4 @@
-[logo]: https://avatars0.githubusercontent.com/u/15658638?s=200&v=4
+<img align="left" width="100" height="100" src="https://avatars0.githubusercontent.com/u/15658638?s=200&v=4">
 
 ### TensorFlow Lite : native compilation on Raspberry Pi Zero W
 

@@ -1,10 +1,9 @@
-<img align="left" width="100" height="100" src="https://avatars0.githubusercontent.com/u/15658638?s=200&v=4">
+<img align="left" width="120" height="120" src="https://avatars0.githubusercontent.com/u/15658638?s=200&v=4">
 
 ### TensorFlow Lite : native compilation on Raspberry Pi Zero W
 
-The native compile section of https://www.tensorflow.org/lite/guide/build_rpi covers most of the prerequisites but the provided RPi build script is for a arm7l target rather than arm6 which powers the Pi Zero
+An addendum to the native compile section of https://www.tensorflow.org/lite/guide/build_rpi for building Tensorflow Lite on a Raspberry Pi Zero W arm6 target rather than a Raspberry Pi 2+ arm7l target
 
-Below are the steps to run a native build on an armv6 RPi 
 
 ```sh
 # Install the pre-reqs

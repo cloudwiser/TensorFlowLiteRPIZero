@@ -59,8 +59,10 @@ Assuming `./minimal` produces the expected output, build and run the `label_imag
 (host)$ scp <local_path_to>/mobilenet_quant_v1_224.tflite pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
 (host)$ scp <local_path_to>/grace_hopper.bmp pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
 
-# Build and run label_image example
+# Build the label_image example
 (rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_label_image.sh
+
+# Run the example : defaults to the image, tflite model and labels files downloaded above
 (rpi) $ ./label_image
 ```
 

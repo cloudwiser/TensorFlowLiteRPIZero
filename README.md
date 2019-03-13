@@ -45,13 +45,13 @@ Clone this repo and move the files to the relevant paths on the Raspiberry Pi Ze
 (rpi) $ sudo /etc/init.d/dphys-swapfile start
 ```
 
-The output from the above should be error-free and result in `minimal` and `benchmark` executables placed in  `../tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin` ...plus `libtensorflow-lite.a` and ` benchmark-lib.a` placed in `../lib`
+The output from the above should be error-free and result in `minimal` and `benchmark` executables placed in  `../tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin` ...plus `libtensorflow-lite.a` and ` benchmark-lib.a` placed in `../tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/lib`
 
-Test the build using a `.tflite` model (see https://www.tensorflow.org/lite/models/object_detection/overview) by running `./minimal detect.tflite`
+Test the build using a `.tflite` model (see https://www.tensorflow.org/lite/models/object_detection/overview) by running `./minimal xxxxx.tflite`
 
 This should generate a summary of the model architecture on stdout. If this isn't the case, check the build output for errors.
 
-Assuming `./minimal` produces the expected output, build and run the `label_image` sample with...
+Assuming `./minimal` produces the expected output, build and run the `label_image` sample as below...
 
 ```sh
 # Copy required files for the label_image example to the Rasperry Pi Zero
@@ -64,6 +64,7 @@ Assuming `./minimal` produces the expected output, build and run the `label_imag
 (rpi) $ ./label_image
 ```
 
-This will run the Mobilenet-based object classifier on the image of Grace Hopper and return the top 5 list of detected objects with a confidence value plus the overall inference time. Use `./label_image --help` to see the command line options.
+This will run the Mobilenet-based object classifier on the image of Grace Hopper and return the top 5 list of detected objects with a confidence value plus the overall inference time. 
+Use `./label_image --help` to see the command line options.
 
 Happy TensorFlow-Lite-development-on-arm6-devices development :-)

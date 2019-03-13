@@ -56,9 +56,7 @@ Assuming `./minimal` produces the expected output, build and run the `label_imag
 ```sh
 # Copy required files for the label_image example to the Rasperry Pi Zero
 (host)$ scp <local_path_to>/labels.txt pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
-
 (host)$ scp <local_path_to>/mobilenet_quant_v1_224.tflite pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
-
 (host)$ scp <local_path_to>/grace_hopper.bmp pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
 
 # Build and run label_image example

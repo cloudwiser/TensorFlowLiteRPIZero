@@ -77,6 +77,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
 MINIMAL_SRCS := \
 tensorflow/lite/examples/minimal/minimal.cc
 
+# An example program that shows how to run a tflite graph with the library.
+LABEL_IMAGE_SRCS := \
+	tensorflow/lite/examples/label_image/label_image.cc \
+	tensorflow/lite/examples/label_image/bitmap_helpers.cc
+
 # What sources we want to compile, must be kept in sync with the main Bazel
 # build files.
 
@@ -116,7 +121,8 @@ $(wildcard tensorflow/lite/*/*test.cc) \
 $(wildcard tensorflow/lite/*/*/*test.cc) \
 $(wildcard tensorflow/lite/*/*/*/*test.cc) \
 $(wildcard tensorflow/lite/kernels/*test_util.cc) \
-$(MINIMAL_SRCS)
+$(MINIMAL_SRCS) \
+$(LABEL_IMAGE_SRCS)
 
 ifeq ($(BUILD_TYPE),micro)
 	CORE_CC_EXCLUDE_SRCS += tensorflow/lite/mmap_allocation.cc
@@ -174,7 +180,8 @@ ALL_SRCS := \
 	$(PROFILER_SRCS) \
 	$(PROFILER_SUMMARY_SRCS) \
 	$(TF_LITE_CC_SRCS) \
-	$(BENCHMARK_SRCS)
+	$(BENCHMARK_SRCS) \
+	$(LABEL_IMAGE_SRCS)
 
 # Where compiled objects are stored.
 GENDIR := $(MAKEFILE_DIR)/gen/$(TARGET)_$(TARGET_ARCH)/
@@ -186,6 +193,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
 BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
 BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
 MINIMAL_BINARY := $(BINDIR)minimal
+LABEL_IMAGE_BINARY := $(BINDIR)label_image
 
 CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
 CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
@@ -200,17 +208,20 @@ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
 BENCHMARK_OBJS := $(addprefix $(OBJDIR), \
 $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(BENCHMARK_SRCS))))
 
+LABEL_IMAGE_OBJS := $(addprefix $(OBJDIR), \
+$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABEL_IMAGE_SRCS))))
+
 # For normal manually-created TensorFlow C++ source files.
 $(OBJDIR)%.o: %.cc
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
-# For normal manually-created TensorFlow C++ source files.
+# For normal manually-created TensorFlow C source files.
 $(OBJDIR)%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
 
 # The target that's compiled if there's no command-line arguments.
-all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
+all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY) $(LABEL_IMAGE_BINARY)
 
 # The target that's compiled for micro-controllers
 micro: $(LIB_PATH)
@@ -243,6 +254,14 @@ $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
 	$(LIBFLAGS) $(BENCHMARK_LIB) $(LDFLAGS) $(LIBS)
 
 benchmark: $(BENCHMARK_BINARY)
+
+$(LABEL_IMAGE_BINARY): $(LABEL_IMAGE_OBJS) $(LIB_PATH)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) \
+	-o $(LABEL_IMAGE_BINARY) $(LABEL_IMAGE_OBJS) \
+	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
+
+label_image: $(LABEL_IMAGE_BINARY)
 
 libdir:
 	@echo $(LIBDIR)

@@ -2,7 +2,7 @@
 
 ### TensorFlow Lite : native compilation on Raspberry Pi Zero W
 
-An addendum to the native compile section of https://www.tensorflow.org/lite/guide/build_rpi for building Tensorflow Lite on a Raspberry Pi Zero W arm6 target rather than a Raspberry Pi 2+ arm7l target.
+An addendum to the native compile section of https://www.tensorflow.org/lite/guide/build_rpi for building Tensorflow Lite on a Raspberry Pi Zero W arm6 target.
 
 Clone this repo and move the files to the relevant paths on the Raspiberry Pi Zero as shown below with the `scp` commands
 

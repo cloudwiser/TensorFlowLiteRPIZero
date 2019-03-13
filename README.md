@@ -24,7 +24,7 @@ Clone this repo and move the files to the relevant paths on the Raspiberry Pi Ze
 # Updated Makefile disables NNAPI to avoid "undefined reference to `NnApiImplementation()'" references
 (rpi) $ cd <path_to>/tensorflow/tensorflow/lite/tools/make
 (rpi) $ mv Makefile Makefile.orig
-(host)$ scp /<local_path_to>/Makefile pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
+(host)$ scp <local_path_to>/Makefile pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
 
 # Increase the RPi swap size otherwise 'make' will fail 
 (rpi) $ sudo nano /etc/dphys-swapfile
@@ -54,9 +54,15 @@ This should generate a summary of the model architecture on stdout. If this isn'
 Assuming `./minimal` produces the expected output, build and run the `label_image` sample with...
 
 ```sh
-(rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_label_image.sh
+# Copy required files for the label_image example to the Rasperry Pi Zero
+(host)$ scp <local_path_to>/labels.txt pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
 
-# Ensure you have mobilenet_quant_v1_224.tflite, labels.txt and grace_hopper.bmp in same path and...
+(host)$ scp <local_path_to>/mobilenet_quant_v1_224.tflite pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
+
+(host)$ scp <local_path_to>/grace_hopper.bmp pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
+
+# Build and run label_image example
+(rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_label_image.sh
 (rpi) $ ./label_image
 ```
 

@@ -66,6 +66,6 @@ Assuming `./minimal` produces the expected output, build and run the `label_imag
 (rpi) $ ./label_image
 ```
 
-This will run the Mobilenet-based object classifier on the image of Grace Hopper and return a list of detected objects from labels.txt with the confidence value plus the overall inference time.
+This will run the Mobilenet-based object classifier on the image of Grace Hopper and return the top 5 list of detected objects with a confidence value plus the overall inference time. Use `./label_image --help` to see the command line options.
 
-Happy TensorFlow Lite development on constrained arm-based devices :-)
+Happy TensorFlow-Lite-development-on-arm6-devices development :-)

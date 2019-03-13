@@ -2,8 +2,9 @@
 
 ### TensorFlow Lite : native compilation on Raspberry Pi Zero W
 
-An addendum to the native compile section of https://www.tensorflow.org/lite/guide/build_rpi for building Tensorflow Lite on a Raspberry Pi Zero W arm6 target rather than a Raspberry Pi 2+ arm7l target
+An addendum to the native compile section of https://www.tensorflow.org/lite/guide/build_rpi for building Tensorflow Lite on a Raspberry Pi Zero W arm6 target rather than a Raspberry Pi 2+ arm7l target.
 
+Clone this repo and move the files to the relevant paths on the Raspiberry Pi Zero as shown below with the `scp` commands
 
 ```sh
 # Install the pre-reqs
@@ -48,7 +49,17 @@ The output from the above should be error-free and result in `minimal` and `benc
 
 Test the build using a `.tflite` model (see https://www.tensorflow.org/lite/models/object_detection/overview) by running `./minimal detect.tflite`
 
-This should generate a summary of the model architecture on stdout 
+This should generate a summary of the model architecture on stdout. If this isn't the case, check the build output for errors.
 
-If this isn't the case, check the build output for errors
+Assuming `./minimal` produces the expected output, build and run the `label_image` sample with...
 
+```sh
+(rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_label_image.sh
+
+# Ensure you have mobilenet_quant_v1_224.tflite, labels.txt and grace_hopper.bmp in same path and...
+(rpi) $ ./label_image
+```
+
+This will run the Mobilenet-based object classifier on the image of Grace Hopper and return a list of detected objects from labels.txt with the confidence value plus the overall inference time.
+
+Happy TensorFlow Lite development on constrained arm-based devices :-)

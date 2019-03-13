@@ -33,7 +33,7 @@ Clone this repo and move the files to the relevant paths on the Raspiberry Pi Ze
 (rpi) $ sudo /etc/init.d/dphys-swapfile stop
 (rpi) $ sudo /etc/init.d/dphys-swapfile start
 
-# Build...allow ~6 hours
+# Build...allow ~6 hours on a RPi Zero W
 (rpi) $ cd /home/pi/tensorflow
 (rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_lib.sh
 

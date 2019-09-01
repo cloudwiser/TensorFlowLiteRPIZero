@@ -83,7 +83,8 @@ MINIMAL_SRCS := \
 # An example program that shows how to run a tflite graph with the library.
 LABEL_IMAGE_SRCS := \
 	tensorflow/lite/examples/label_image/label_image.cc \
-	tensorflow/lite/examples/label_image/bitmap_helpers.cc
+	tensorflow/lite/examples/label_image/bitmap_helpers.cc \
+	tensorflow/lite/tools/evaluation/utils.cc
 
 # What sources we want to compile, must be kept in sync with the main Bazel
 # build files.
@@ -228,7 +229,7 @@ ALL_SRCS := \
 	$(PROFILER_SUMMARIZER_SRCS) \
 	$(TF_LITE_CC_SRCS) \
 	$(BENCHMARK_SRCS) \
-  $(CMD_LINE_TOOLS_SRCS) \
+  	$(CMD_LINE_TOOLS_SRCS) \
   	$(LABEL_IMAGE_SRCS)
 
 # Where compiled objects are stored.

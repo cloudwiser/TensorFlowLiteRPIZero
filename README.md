@@ -55,9 +55,9 @@ Assuming `./minimal` produces the expected output, run the `label_image` example
 
 ```sh
 # Copy required files for the label_image example to the Rasperry Pi Zero
-(host)$ scp <local_path_to>/labels.txt pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
-(host)$ scp <local_path_to>/mobilenet_quant_v1_224.tflite pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
-(host)$ scp <local_path_to>/grace_hopper.bmp pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
+(host)$ scp <local_path_to>/labels.txt pi@<rpi_ip_addr>:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
+(host)$ scp <local_path_to>/mobilenet_quant_v1_224.tflite pi@<rpi_ip_addr>:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
+(host)$ scp <local_path_to>/grace_hopper.bmp pi@<rpi_ip_addr>:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/gen/rpi_armv6/bin
 
 # if you need to (re)build the label_image example...
 (rpi) $ ./tensorflow/lite/tools/make/build_rpi_armv6_label_image.sh
@@ -69,4 +69,4 @@ Assuming `./minimal` produces the expected output, run the `label_image` example
 This will run the Mobilenet-based object classifier on the image of Grace Hopper and return the top 5 list of detected objects with a confidence value plus the overall inference time. 
 Use `./label_image --help` to see the command line options.
 
-Happy TensorFlow-Lite-development-on-arm6-devices development :-)
+Happy TensorFlow-Lite-development-on-arm6-devices!

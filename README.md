@@ -13,19 +13,26 @@ Clone this repo and move the files to the relevant paths on the Raspiberry Pi Ze
     # Clone the repo onto the Pi Zero
     (rpi) $ cd ~
     (rpi) $ git clone https://github.com/tensorflow/tensorflow.git
+    (rpi) $ git checkout v1.14.0
     (rpi) $ cd ./tensorflow
+    or download it directly from https://github.com/tensorflow/tensorflow/releases/tag/v1.14.0
 
     # Install the dependencies
     (rpi) $ ./tensorflow/lite/tools/make/download_dependencies.sh
 
 # FTP/scp the arm6 build script to /home/pi/tensorflow/tensorflow/lite/tools/make
-(host)$ scp <local_path_to>/build_rpi_armv6_lib.sh pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
+(host)$ scp <local_path_to>/build_rpi_armv6_lib.sh pi@[pi's ip]:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
 
 # FTP/scp the updated Makefile that builds the label_image example as well
 (rpi) $ cd <path_to>/tensorflow/tensorflow/lite/tools/make
 (rpi) $ mv Makefile Makefile.orig
-(host)$ scp <local_path_to>/Makefile pi@192.168.0.1:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
+(host)$ scp <local_path_to>/Makefile pi@[pi's ip]:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
+(rpi) $ cd <path_to>/tensorflow/tensorflow/lite/tools/make/target
+(rpi) $ mv rpi_makefile.inc rpi_makefile.inc.orig
+(host)$ scp <local_path_to>/rpi_makefile.inc pi@[pi's ip]:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make/target
 
+# FTP/scp the updated  that builds the label_image example as well
+(host)$ scp <local_path_to>/Makefile pi@[pi's ip]:<rpi_path_to>/tensorflow/tensorflow/lite/tools/make
 # Increase the RPi swap size otherwise 'make' will fail 
 (rpi) $ sudo nano /etc/dphys-swapfile
 ...CONF_SWAPSIZE=100 --> CONF_SWAPSIZE=2048

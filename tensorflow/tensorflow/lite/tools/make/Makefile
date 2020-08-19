@@ -48,6 +48,7 @@ INCLUDES += -I/usr/local/include
 # overridden by the platform-specific settings in target makefiles.
 LIBS := \
 -lstdc++ \
+-latomic \
 -lpthread \
 -lm \
 -lz
@@ -109,22 +110,14 @@ tensorflow/lite/experimental/ruy/allocator.cc \
 tensorflow/lite/experimental/ruy/block_map.cc \
 tensorflow/lite/experimental/ruy/blocking_counter.cc \
 tensorflow/lite/experimental/ruy/context.cc \
-tensorflow/lite/experimental/ruy/detect_arm.cc \
-tensorflow/lite/experimental/ruy/have_built_path_for_avx2.cc \
-tensorflow/lite/experimental/ruy/have_built_path_for_avx512.cc \
-tensorflow/lite/experimental/ruy/kernel_arm32.cc \
-tensorflow/lite/experimental/ruy/kernel_arm64.cc \
-tensorflow/lite/experimental/ruy/kernel_avx2.cc \
-tensorflow/lite/experimental/ruy/kernel_avx512.cc \
-tensorflow/lite/experimental/ruy/pack_arm.cc \
-tensorflow/lite/experimental/ruy/pack_avx2.cc \
-tensorflow/lite/experimental/ruy/pack_avx512.cc \
+tensorflow/lite/experimental/ruy/kernel.cc \
+tensorflow/lite/experimental/ruy/pack.cc \
 tensorflow/lite/experimental/ruy/pmu.cc \
 tensorflow/lite/experimental/ruy/thread_pool.cc \
 tensorflow/lite/experimental/ruy/trace.cc \
 tensorflow/lite/experimental/ruy/trmul.cc \
-tensorflow/lite/experimental/ruy/tune.cc \
-tensorflow/lite/experimental/ruy/wait.cc
+tensorflow/lite/experimental/ruy/tune.cc
+
 ifneq ($(BUILD_TYPE),micro)
 CORE_CC_ALL_SRCS += \
 $(wildcard tensorflow/lite/kernels/*.cc) \
